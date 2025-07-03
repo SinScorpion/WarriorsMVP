@@ -1,0 +1,20 @@
+{
+    "asset": "a690d1a9be1bb834d9935b9b870cc804",
+    "fileName": "0197cb85-378c-7d7e-b752-aafa55018d88.jpg",
+    "prompt": "HP bar",
+    "negativePrompt": "",
+    "model": "4dc55660-f3eb-42ba-93a4-6261d6b2b8ec",
+    "modelName": "Game UI",
+    "customSeed": -1,
+    "w3CTraceId": "d339ea4ad8564f431d2c3566310a5b21",
+    "refinementMode": "Generation",
+    "pixelateTargetSize": 0,
+    "pixelateKeepImageSize": false,
+    "pixelatePixelBlockSize": 0,
+    "pixelateMode": 0,
+    "pixelateOutlineThickness": 0,
+    "doodles": {
+        "m_Items": []
+    },
+    "upscaleFactor": 0
+}

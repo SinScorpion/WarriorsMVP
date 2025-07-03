@@ -1,0 +1,20 @@
+{
+    "asset": "a690d1a9be1bb834d9935b9b870cc804",
+    "fileName": "0197cb85-9b33-7427-b1da-b19bc96f5d06.jpg",
+    "prompt": "HP bar",
+    "negativePrompt": "",
+    "model": "a6dd7487-c9ba-4a8a-8e68-2c94b715b076",
+    "modelName": "Human Interface",
+    "customSeed": -1,
+    "w3CTraceId": "148a8077eb257c66c59cbf17483ce49a",
+    "refinementMode": "Generation",
+    "pixelateTargetSize": 0,
+    "pixelateKeepImageSize": false,
+    "pixelatePixelBlockSize": 0,
+    "pixelateMode": 0,
+    "pixelateOutlineThickness": 0,
+    "doodles": {
+        "m_Items": []
+    },
+    "upscaleFactor": 0
+}
