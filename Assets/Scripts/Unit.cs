@@ -9,10 +9,14 @@ public class Unit : MonoBehaviour
     public int rewardGold = 0;
 
     public Vector2 moveDirection = Vector2.right;
+
     //Атака
     public float damage = 2f;
     public float attackRange = 0.1f;
     public float attackCooldown = 1.0f;
+
+    public HPBar hpBarPrefab; // Префаб HP-бара
+    private HPBar hpBarInstance; // Его экземпляр
 
     private float attackTimer = 0f; // Внутренний таймер для перезарядки 
 
@@ -23,6 +27,14 @@ public class Unit : MonoBehaviour
     void Start()
     {
         currentHP = maxHP;
+
+        // Создаем HP-бар
+        if (hpBarPrefab !=null)
+        {
+            hpBarInstance = Instantiate(hpBarPrefab, Vector3.zero, Quaternion.identity, GameObject.Find("Canvas").transform);
+            hpBarInstance.target = this.transform;
+            hpBarInstance.SetHP(currentHP, maxHP);
+        }
     }
 
     // Update is called once per frame
@@ -76,6 +88,10 @@ public class Unit : MonoBehaviour
     public void TakeDamage(float amount)
     {
         currentHP -= amount;
+        if (hpBarInstance !=null)
+        {
+            hpBarInstance.SetHP(currentHP, maxHP);
+        }
         if (currentHP <=0f)
         {
             Die();
@@ -84,6 +100,11 @@ public class Unit : MonoBehaviour
 
     void Die()
     {
+        if (hpBarInstance !=null)
+        {
+            Destroy(hpBarInstance.gameObject);
+        }
+
         if (!isPlayerUnit && GameManager.Instance !=null)
         {
             GameManager.Instance.AddGold(rewardGold);
