@@ -354,12 +354,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 355120377}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.94, y: -0.45, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.1400001, y: -0.45, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 2034611343}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &391579607
 GameObject:
@@ -1543,12 +1543,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1080, y: 1920}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -1563,7 +1563,7 @@ Canvas:
   m_GameObject: {fileID: 883862348}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 519420031}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -1650,8 +1650,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1072132202}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.41746, y: -0.71453, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.41745996, y: -0.71453, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2193,7 +2193,7 @@ Transform:
   m_GameObject: {fileID: 1133079926}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.8, z: 0}
   m_LocalScale: {x: 0.8252, y: 0.77412015, z: 0.8252}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2361,12 +2361,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1158770984}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.99, y: -0.45, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.19000006, y: -0.45, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 2056695567}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1308816149
 GameObject:
@@ -3501,7 +3501,7 @@ Transform:
   m_GameObject: {fileID: 2034611342}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.8, y: 0, z: -1}
+  m_LocalPosition: {x: -2.8, y: 0.8, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3510,6 +3510,7 @@ Transform:
   - {fileID: 1130511090}
   - {fileID: 1073649382}
   - {fileID: 476790093}
+  - {fileID: 355120378}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &2034611344
@@ -3574,6 +3575,9 @@ MonoBehaviour:
   currentHP: 2
   rewardGold: 0
   isPlayerBase: 1
+  hpBar: {fileID: 0}
+  hpBarPrefab: {fileID: 7769281066555706627, guid: bef7930a578c41448a7b5bea03711d1f, type: 3}
+  hpBarOffset: {x: 0.25, y: 0.7, z: 0}
 --- !u!1 &2044008445
 GameObject:
   m_ObjectHideFlags: 0
@@ -3676,7 +3680,7 @@ Transform:
   m_GameObject: {fileID: 2056695566}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.8, y: 0, z: -1}
+  m_LocalPosition: {x: 2.8, y: 0.8, z: -1}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3685,6 +3689,7 @@ Transform:
   - {fileID: 1390863800}
   - {fileID: 2080831016}
   - {fileID: 2083159926}
+  - {fileID: 1158770985}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &2056695568
@@ -3749,6 +3754,9 @@ MonoBehaviour:
   currentHP: 100
   rewardGold: 1000
   isPlayerBase: 0
+  hpBar: {fileID: 0}
+  hpBarPrefab: {fileID: 7769281066555706627, guid: bef7930a578c41448a7b5bea03711d1f, type: 3}
+  hpBarOffset: {x: -0.25, y: 0.7, z: 0}
 --- !u!1 &2080831015
 GameObject:
   m_ObjectHideFlags: 0
@@ -4032,8 +4040,6 @@ SceneRoots:
   - {fileID: 2034611343}
   - {fileID: 2056695567}
   - {fileID: 1599567197}
-  - {fileID: 355120378}
-  - {fileID: 1158770985}
-  - {fileID: 1072132204}
   - {fileID: 1083562062}
+  - {fileID: 1072132204}
   - {fileID: 602391166}

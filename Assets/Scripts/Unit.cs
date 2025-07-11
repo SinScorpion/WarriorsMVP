@@ -33,7 +33,9 @@ public class Unit : MonoBehaviour
         {
             hpBarInstance = Instantiate(hpBarPrefab, Vector3.zero, Quaternion.identity, GameObject.Find("Canvas").transform);
             hpBarInstance.target = this.transform;
+            
             hpBarInstance.SetHP(currentHP, maxHP);
+            hpBarInstance.UpdatePositionImmediate();
         }
     }
 

@@ -124,7 +124,13 @@ public class GameManager : MonoBehaviour
             {
                 playerBase.maxHP += hpUpgradeStep;
                 playerBase.currentHP = playerBase.maxHP; // Лечим базу до фулла после апгрейда
+                if (playerBase.hpBar != null)
+                {
+                    playerBase.hpBar.SetHP(playerBase.currentHP, playerBase.maxHP);
+                }
             }
+
+           
             
             UpdateBaseHpUpgradeUI();
 
