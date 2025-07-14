@@ -107,6 +107,7 @@ GameObject:
   - component: {fileID: 6491700555349790337}
   - component: {fileID: 3143977991912863375}
   - component: {fileID: 7178256262255055244}
+  - component: {fileID: 1002570887646630006}
   m_Layer: 0
   m_Name: Enemy_1
   m_TagString: Untagged
@@ -305,5 +306,27 @@ MonoBehaviour:
   moveDirection: {x: -1, y: 0}
   damage: 2
   attackRange: 0.15
-  attackCooldown: 1
+  attackCooldown: 2
   hpBarPrefab: {fileID: 8823248952179574567, guid: 397442b7744b95845a09e27882f5df66, type: 3}
+--- !u!95 &1002570887646630006
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7604839253617526526}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0138446e59e9fb44e988416f1b499dcc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

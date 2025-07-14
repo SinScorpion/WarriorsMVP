@@ -77,13 +77,16 @@ public class Unit : MonoBehaviour
 
     void Attack(Unit target)
     {
-        target.TakeDamage(damage); // Наносим урон врагу
+        //Запуск анимации
+        GetComponent<Animator>().SetTrigger("Attack");
+       /* target.TakeDamage(damage); */// Наносим урон врагу
         // Потом добавим анимацию и звук
     }
 
     void AttackBase(Base targetBase)
     {
-        targetBase.TakeDamage(damage);
+        GetComponent<Animator>().SetTrigger("Attack");
+        //targetBase.TakeDamage(damage);
     }
 
     //Этот метод вызывает урон юниту
@@ -100,6 +103,22 @@ public class Unit : MonoBehaviour
         }
     }
 
+    public void DealDamage()
+    {
+        Unit target = FindTargetInRange();
+        if (target !=null)
+        {
+            target.TakeDamage(damage);
+        }
+        else
+        {
+            Base baseTarget = FindBaseInRange();
+            if (baseTarget != null)
+            {
+                baseTarget.TakeDamage(damage);
+            }
+        }
+    }
     void Die()
     {
         if (hpBarInstance !=null)
