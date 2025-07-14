@@ -14,6 +14,8 @@ public class Unit : MonoBehaviour
     public float damage = 2f;
     public float attackRange = 0.1f;
     public float attackCooldown = 1.0f;
+    public AudioClip hitSound;
+    private AudioSource audioSource;
 
     public HPBar hpBarPrefab; // Префаб HP-бара
     private HPBar hpBarInstance; // Его экземпляр
@@ -36,7 +38,14 @@ public class Unit : MonoBehaviour
             
             hpBarInstance.SetHP(currentHP, maxHP);
             hpBarInstance.UpdatePositionImmediate();
+            //Скрываем полоску хп при полном здоровье
+            if (currentHP >= maxHP)
+            {
+                hpBarInstance.gameObject.SetActive(false);
+            }
         }
+
+        audioSource = gameObject.AddComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -95,6 +104,11 @@ public class Unit : MonoBehaviour
         currentHP -= amount;
         if (hpBarInstance !=null)
         {
+            if (!hpBarInstance.gameObject.activeSelf)
+            {
+                hpBarInstance.gameObject.SetActive(true);
+            }
+
             hpBarInstance.SetHP(currentHP, maxHP);
         }
         if (currentHP <=0f)
@@ -105,6 +119,12 @@ public class Unit : MonoBehaviour
 
     public void DealDamage()
     {
+        if (hitSound !=null && audioSource !=null)
+        {
+            audioSource.volume = 0.1f;
+            audioSource.PlayOneShot(hitSound);
+        }
+
         Unit target = FindTargetInRange();
         if (target !=null)
         {

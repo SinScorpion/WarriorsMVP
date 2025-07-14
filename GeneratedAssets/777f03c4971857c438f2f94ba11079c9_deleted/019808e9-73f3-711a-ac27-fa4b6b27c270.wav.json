@@ -1,0 +1,13 @@
+{
+    "asset": "777f03c4971857c438f2f94ba11079c9",
+    "fileName": "019808e9-73f3-711a-ac27-fa4b6b27c270.wav",
+    "prompt": "deal damage cartoon\n",
+    "negativePrompt": "",
+    "model": "0ee39b33-2893-4e0f-8c46-0e0bdd4eda85",
+    "modelName": "Text to Sound",
+    "customSeed": -1,
+    "w3CTraceId": "2a97d635685b62435587ce703e5f0ed2",
+    "duration": 1.0,
+    "autoTrim": true,
+    "hasReference": false
+}

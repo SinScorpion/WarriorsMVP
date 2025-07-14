@@ -1,0 +1,13 @@
+{
+    "asset": "777f03c4971857c438f2f94ba11079c9",
+    "fileName": "019808e8-0941-7714-b3c2-91d79b664cc2.wav",
+    "prompt": "Take Damage",
+    "negativePrompt": "",
+    "model": "0ee39b33-2893-4e0f-8c46-0e0bdd4eda85",
+    "modelName": "Text to Sound",
+    "customSeed": -1,
+    "w3CTraceId": "736d27da7012ad6d1c34333533e485c1",
+    "duration": 1.0,
+    "autoTrim": true,
+    "hasReference": false
+}

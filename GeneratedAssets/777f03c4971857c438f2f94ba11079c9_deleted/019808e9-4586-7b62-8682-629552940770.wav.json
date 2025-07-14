@@ -1,0 +1,13 @@
+{
+    "asset": "777f03c4971857c438f2f94ba11079c9",
+    "fileName": "019808e9-4586-7b62-8682-629552940770.wav",
+    "prompt": "damage cartoon\n",
+    "negativePrompt": "",
+    "model": "0ee39b33-2893-4e0f-8c46-0e0bdd4eda85",
+    "modelName": "Text to Sound",
+    "customSeed": -1,
+    "w3CTraceId": "992b31cfed74d2e356c93d414649399b",
+    "duration": 1.0,
+    "autoTrim": true,
+    "hasReference": false
+}
