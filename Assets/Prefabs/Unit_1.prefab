@@ -256,8 +256,8 @@ MonoBehaviour:
   moveSpeed: 0.2
   maxHP: 10
   currentHP: 10
-  allyCheckDistance: 0.5
-  avoidYOffset: 1.4
+  allyCheckDistance: 0.3
+  avoidYOffset: 0.3
   rewardGold: 0
   moveDirection: {x: 1, y: 0}
   damage: 2

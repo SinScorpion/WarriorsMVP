@@ -104,7 +104,7 @@ public class Unit : MonoBehaviour
                 if (IsAllyInFront())
                 {
                     float offset = (Random.value > 0.5f) ? avoidYOffset : -avoidYOffset;
-                    Vector2 avoidDirection = new Vector2(moveDirection.x, offset).normalized;
+                    Vector2 avoidDirection = new Vector2(moveDirection.x, offset);
                     transform.Translate(avoidDirection * moveSpeed * Time.deltaTime);
                 }
                 else
