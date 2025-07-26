@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 2184988305570109060}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.82893217, w: 0.55934924}
-  m_LocalPosition: {x: -0.016588956, y: 0.18362232, z: 0}
+  m_LocalPosition: {x: 0.0021813312, y: 0.071000956, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -182,7 +182,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9e0d376fe7b74724786b68f20bde10ef, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 671842cb74f2eaa47a34ba6e0dec5575, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -207,9 +207,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.2D.Animation.Runtime::UnityEngine.U2D.Animation.SpriteSkin
   m_RootBone: {fileID: 3016887372167954542}
   m_BoneTransforms:
+  - {fileID: 5566447503378373656}
   - {fileID: 3016887372167954542}
   - {fileID: 8212247108910907612}
-  - {fileID: 5566447503378373656}
   m_Bounds:
     m_Center: {x: 0.17999995, y: 0.3222313, z: 0}
     m_Extent: {x: 0.90750015, y: 1.3191216, z: 0}
@@ -253,7 +253,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.024, y: 1.536}
+    oldSize: {x: 0.815, y: 1.191}
     newSize: {x: 10.24, y: 15.36}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
