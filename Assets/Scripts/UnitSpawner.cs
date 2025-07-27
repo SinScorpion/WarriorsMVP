@@ -6,6 +6,8 @@ public class UnitData
     public string unitName;
     public GameObject prefab;
     public float meatCost = 3f;
+    public bool unlocked = false; //открыт ли слот персонажа
+    public int unlockGoldCost = 150; // —колько золота дл€ открыти€
 }
 public class UnitSpawner : MonoBehaviour
 {
@@ -17,9 +19,9 @@ public class UnitSpawner : MonoBehaviour
     // —сылка на выбранного юнита
     public int selectedUnitIndex = 0;
 
-    public void SpawnUnit()
+    public void SpawnUnit(int index)
     {
-        var data = units[selectedUnitIndex];
+        var data = units[index];
         if (GameManager.Instance != null && GameManager.Instance.SpendMeat(data.meatCost))
         {
             Instantiate(data.prefab, spawnPoint.position, Quaternion.identity, transform);

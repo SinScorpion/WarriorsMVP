@@ -153,7 +153,7 @@ public class Unit : MonoBehaviour
         }
     }
 
-    void Attack(Unit target)
+    protected virtual void Attack(Unit target)
     {
         //Запуск анимации
         GetComponent<Animator>().SetTrigger("Attack");
@@ -228,15 +228,24 @@ public class Unit : MonoBehaviour
     {
         // Находим все коллайдеры в радиусе attackRange
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, attackRange);
+
+        Unit closest = null;
+        float minDist = Mathf.Infinity;
+
         foreach (var hit in hits)
         {
             Unit other = hit.GetComponent<Unit>();
             if (other != null && other != this && other.isPlayerUnit != this.isPlayerUnit)
             {
-                return other; // нашли врага - возвращаем его
+                float dist = Vector2.Distance(transform.position, other.transform.position);
+                if (dist < minDist)
+                {
+                    minDist = dist;
+                    closest = other;
+                }
             }
         }
-        return null;
+        return closest;
     }
 
     public Unit FindClosestEnemy()

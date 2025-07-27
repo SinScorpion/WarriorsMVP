@@ -109,8 +109,8 @@ GameObject:
   - component: {fileID: 77465538015211769}
   - component: {fileID: 4382191931581369406}
   m_Layer: 6
-  m_Name: Unit_1
-  m_TagString: Untagged
+  m_Name: Unit_1_3
+  m_TagString: PlayerUnit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
