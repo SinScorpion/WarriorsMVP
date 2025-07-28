@@ -180,6 +180,30 @@ public class Unit : MonoBehaviour
 
             hpBarInstance.SetHP(currentHP, maxHP);
         }
+
+        if (hitSound != null && audioSource != null)
+        {
+            audioSource.volume = 0.1f;
+
+            if (currentHP - amount <= 0f)
+            {
+                GameObject tempGO = new GameObject("TempAudio");
+                tempGO.transform.position = transform.position;
+
+                AudioSource tempSource = tempGO.AddComponent<AudioSource>();
+                tempSource.clip = hitSound;
+                tempSource.volume = 0.1f;
+                tempSource.Play();
+
+                Destroy(tempGO, hitSound.length);
+            }
+            else
+            {
+                audioSource.PlayOneShot(hitSound);
+            }
+
+        }
+
         if (currentHP <=0f)
         {
             Die();
@@ -188,11 +212,7 @@ public class Unit : MonoBehaviour
 
     public void DealDamage()
     {
-        if (hitSound !=null && audioSource !=null)
-        {
-            audioSource.volume = 0.1f;
-            audioSource.PlayOneShot(hitSound);
-        }
+      
 
         Unit target = FindTargetInRange();
         if (target !=null)
