@@ -5,10 +5,16 @@ public class ShooterUnit : Unit
     public GameObject projectilePrefab;
     public Transform throwPoint;
 
-    private Unit targetForShot; // Храним текущую цель для броска
+    private Transform targetForShot; // Храним текущую цель для броска
     protected override void Attack(Unit target)
     {
-        targetForShot = target;
+        targetForShot = target.transform;
+        GetComponent<Animator>().SetTrigger("Attack");
+    }
+
+    protected override void AttackBase(Base baseTarget)
+    {
+        targetForShot = baseTarget.transform;
         GetComponent<Animator>().SetTrigger("Attack");
     }
 
@@ -20,7 +26,7 @@ public class ShooterUnit : Unit
         var proj = projectile.GetComponent<Projectile>();
         if (proj !=null)
         {
-            proj.Init(targetForShot.transform, damage);
+            proj.Init(targetForShot, damage);
         }
     }
 }

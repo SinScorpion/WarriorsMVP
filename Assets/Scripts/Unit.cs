@@ -161,7 +161,7 @@ public class Unit : MonoBehaviour
         // Потом добавим анимацию и звук
     }
 
-    void AttackBase(Base targetBase)
+    protected virtual void AttackBase(Base targetBase)
     {
         GetComponent<Animator>().SetTrigger("Attack");
         //targetBase.TakeDamage(damage);

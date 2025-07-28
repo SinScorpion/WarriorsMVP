@@ -26,6 +26,14 @@ public class Projectile : MonoBehaviour
             {
                 unit.TakeDamage(damage);
             }
+            else
+            {
+                var baseTarget = target.GetComponent<Base>();
+                if (baseTarget !=null)
+                {
+                    baseTarget.TakeDamage(damage); 
+                }
+            }
             Destroy(gameObject);
         }
     }
