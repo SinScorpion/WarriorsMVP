@@ -26,7 +26,7 @@ public class ShooterUnit : Unit
         var proj = projectile.GetComponent<Projectile>();
         if (proj !=null)
         {
-            proj.Init(targetForShot, damage);
+            proj.Init(targetForShot, damage, this);
         }
     }
 }

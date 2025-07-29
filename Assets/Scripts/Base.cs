@@ -10,6 +10,7 @@ public class Base : MonoBehaviour
     public GameObject hpBarPrefab;
     public Vector3 hpBarOffset = new Vector3(0.2f, 0.7f, 0);
 
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

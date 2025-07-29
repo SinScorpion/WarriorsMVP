@@ -19,7 +19,7 @@ public class Unit : MonoBehaviour
     public float attackRange = 0.1f;
     public float attackCooldown = 1.0f;
     public AudioClip hitSound;
-    private AudioSource audioSource;
+    public AudioSource audioSource;
 
     public HPBar hpBarPrefab; // Префаб HP-бара
     private HPBar hpBarInstance; // Его экземпляр
@@ -165,6 +165,12 @@ public class Unit : MonoBehaviour
     {
         GetComponent<Animator>().SetTrigger("Attack");
         //targetBase.TakeDamage(damage);
+
+        if (hitSound != null && audioSource != null)
+        {
+            audioSource.volume = 0.1f;
+            audioSource.PlayOneShot(hitSound);
+        }
     }
 
     //Этот метод вызывает урон юниту

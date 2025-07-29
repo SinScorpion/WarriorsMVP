@@ -5,11 +5,13 @@ public class Projectile : MonoBehaviour
     private Transform target;
     private float speed = 5f;
     private float damage;
+    private Unit attacker;
 
-    public void Init(Transform target, float damage)
+    public void Init(Transform target, float damage, Unit attacker)
     {
         this.target = target;
         this.damage = damage;
+        this.attacker = attacker;
     }
 
     // Update is called once per frame
@@ -31,7 +33,13 @@ public class Projectile : MonoBehaviour
                 var baseTarget = target.GetComponent<Base>();
                 if (baseTarget !=null)
                 {
-                    baseTarget.TakeDamage(damage); 
+                    baseTarget.TakeDamage(damage);
+
+                    if (attacker !=null && attacker.hitSound !=null && attacker.audioSource !=null)
+                    {
+                        attacker.audioSource.volume = 0.1f;
+                        attacker.audioSource.PlayOneShot(attacker.hitSound);
+                    }
                 }
             }
             Destroy(gameObject);
