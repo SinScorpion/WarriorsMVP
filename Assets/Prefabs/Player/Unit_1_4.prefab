@@ -24,13 +24,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2184988305570109060}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.82893217, w: 0.55934924}
-  m_LocalPosition: {x: -0.016588956, y: 0.18362232, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.8165972, w: 0.577208}
+  m_LocalPosition: {x: -0.029, y: 0.12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8369630355965076192}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 109.491}
 --- !u!1 &4192136438083060630
 GameObject:
   m_ObjectHideFlags: 0
@@ -125,7 +125,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.85, y: -0.09, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3016887372167954542}
@@ -180,7 +180,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9e0d376fe7b74724786b68f20bde10ef, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8b67e179ee68cb54c876a017132de35a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -206,8 +206,8 @@ MonoBehaviour:
   m_RootBone: {fileID: 3016887372167954542}
   m_BoneTransforms:
   - {fileID: 3016887372167954542}
-  - {fileID: 8212247108910907612}
   - {fileID: 5566447503378373656}
+  - {fileID: 8212247108910907612}
   m_Bounds:
     m_Center: {x: 0.17999995, y: 0.3222313, z: 0}
     m_Extent: {x: 0.90750015, y: 1.3191216, z: 0}
@@ -254,16 +254,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Unit
   isPlayerUnit: 1
   moveSpeed: 0.2
-  maxHP: 10
-  currentHP: 10
+  maxHP: 40
+  currentHP: 40
   allyCheckDistance: 0.3
   avoidYOffset: 0.3
   rewardGold: 0
   moveDirection: {x: 1, y: 0}
-  damage: 2
+  damage: 6
   attackRange: 0.15
   attackCooldown: 2
   hitSound: {fileID: 8300000, guid: 6fe3ce24e19a34d4d9c58f3cd3d70153, type: 3}
+  audioSource: {fileID: 0}
   hpBarPrefab: {fileID: 8823248952179574567, guid: 397442b7744b95845a09e27882f5df66, type: 3}
 --- !u!95 &77465538015211769
 Animator:

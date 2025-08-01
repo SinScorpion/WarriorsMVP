@@ -353,13 +353,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Unit
   isPlayerUnit: 1
   moveSpeed: 0.2
-  maxHP: 10
-  currentHP: 10
+  maxHP: 18
+  currentHP: 18
   allyCheckDistance: 0.3
   avoidYOffset: 0.3
   rewardGold: 0
   moveDirection: {x: 1, y: 0}
-  damage: 2
+  damage: 4
   attackRange: 0.32
   attackCooldown: 2
   hitSound: {fileID: 8300000, guid: 6fe3ce24e19a34d4d9c58f3cd3d70153, type: 3}

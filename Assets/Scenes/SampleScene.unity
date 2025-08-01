@@ -1792,7 +1792,7 @@ MonoBehaviour:
     unlockGoldCost: 200
   - unitName: SpecialMan
     prefab: {fileID: 7604839253617526526, guid: 303f627f637275d4d9e80082f341e982, type: 3}
-    meatCost: 8
+    meatCost: 7
     unlocked: 1
     unlockGoldCost: 525
   - unitName: Hero
@@ -3318,6 +3318,12 @@ MonoBehaviour:
     spawnInterval: 0
     startTime: 10
   - enemyCount: 5
+    spawnInterval: 0
+    startTime: 10
+  - enemyCount: 15
+    spawnInterval: 0
+    startTime: 10
+  - enemyCount: 25
     spawnInterval: 0
     startTime: 10
 --- !u!4 &1072132204
