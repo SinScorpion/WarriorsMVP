@@ -262,7 +262,7 @@ MonoBehaviour:
   moveDirection: {x: 1, y: 0}
   damage: 2
   attackRange: 0.15
-  attackCooldown: 2
+  attackCooldown: 3
   hitSound: {fileID: 8300000, guid: 6fe3ce24e19a34d4d9c58f3cd3d70153, type: 3}
   audioSource: {fileID: 0}
   hpBarPrefab: {fileID: 8823248952179574567, guid: 397442b7744b95845a09e27882f5df66, type: 3}
