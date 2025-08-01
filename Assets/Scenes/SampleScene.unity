@@ -3308,24 +3308,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0b25eee13dd9cf4fac8d2108f3bb4f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
-  enemyPrefab: {fileID: 7604839253617526526, guid: a156d069caa6b244c9311213b4bf43fa, type: 3}
   spawnPoint: {fileID: 1158770985}
   waves:
-  - enemyCount: 1
-    spawnInterval: 0
-    startTime: 10
-  - enemyCount: 2
-    spawnInterval: 0
-    startTime: 10
-  - enemyCount: 5
-    spawnInterval: 0
-    startTime: 10
-  - enemyCount: 15
-    spawnInterval: 0
-    startTime: 10
-  - enemyCount: 25
-    spawnInterval: 0
-    startTime: 10
+  - startTime: 8
+    enemies:
+    - enemyPrefab: {fileID: 7604839253617526526, guid: a156d069caa6b244c9311213b4bf43fa, type: 3}
+      count: 2
+      spawnDelay: 12
+    interEnemyDelay: 0.5
+  - startTime: 0
+    enemies:
+    - enemyPrefab: {fileID: 7604839253617526526, guid: a156d069caa6b244c9311213b4bf43fa, type: 3}
+      count: 2
+      spawnDelay: 0
+    interEnemyDelay: 0.5
+  - startTime: 12
+    enemies:
+    - enemyPrefab: {fileID: 7604839253617526526, guid: a156d069caa6b244c9311213b4bf43fa, type: 3}
+      count: 3
+      spawnDelay: 0
+    interEnemyDelay: 0.5
 --- !u!4 &1072132204
 Transform:
   m_ObjectHideFlags: 0

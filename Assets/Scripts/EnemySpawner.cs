@@ -4,17 +4,24 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-
-    public GameObject enemyPrefab;
     public Transform spawnPoint;
+
+    [System.Serializable]
+    public class EnemySpawnData
+    {
+        public GameObject enemyPrefab;
+        public int count = 1; // Сколько таких врагов спавнить
+        public float spawnDelay = 0.5f;
+    }
 
     //Структура одной волны
     [System.Serializable]
     public class Wave
     {
-        public int enemyCount = 1;
-        public float spawnInterval = 2f;
         public float startTime = 0f;
+        public List<EnemySpawnData> enemies = new List<EnemySpawnData>();
+        public float interEnemyDelay = 0.5f; // Задержка между разными типами
+        
     }
 
     //Список всех волн
@@ -33,12 +40,18 @@ public class EnemySpawner : MonoBehaviour
             // Старт волны
             yield return new WaitForSeconds(wave.startTime);
 
-            for (int i = 0; i < wave.enemyCount; i++)
+            foreach (var enemyData in wave.enemies)
             {
-                Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity, transform);
-                // Интервал между врагами
-                yield return new WaitForSeconds(wave.spawnInterval);
+                for (int i = 0; i < enemyData.count; i++)
+                {
+                    Instantiate(enemyData.enemyPrefab, spawnPoint.position, Quaternion.identity, transform);
+                    yield return new WaitForSeconds(enemyData.spawnDelay);
+
+                }
+                yield return new WaitForSeconds(wave.interEnemyDelay);
             }
+
+            
         }
     }
 
