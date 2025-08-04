@@ -3310,7 +3310,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
   spawnPoint: {fileID: 1158770985}
   waves:
-  - startTime: 8
+  - startTime: 6
     enemies:
     - enemyPrefab: {fileID: 7604839253617526526, guid: a156d069caa6b244c9311213b4bf43fa, type: 3}
       count: 2
@@ -3328,6 +3328,33 @@ MonoBehaviour:
       count: 3
       spawnDelay: 0
     interEnemyDelay: 0.5
+  - startTime: 12
+    enemies:
+    - enemyPrefab: {fileID: 7604839253617526526, guid: 29d58d356b875da40a3babe686794d76, type: 3}
+      count: 2
+      spawnDelay: 0
+    interEnemyDelay: 0.5
+  - startTime: 12
+    enemies:
+    - enemyPrefab: {fileID: 7604839253617526526, guid: f580f7201b60b0d44ad795d49eef5bd6, type: 3}
+      count: 1
+      spawnDelay: 0
+    interEnemyDelay: 0.5
+  - startTime: 12
+    enemies:
+    - enemyPrefab: {fileID: 7604839253617526526, guid: a156d069caa6b244c9311213b4bf43fa, type: 3}
+      count: 5
+      spawnDelay: 0
+    - enemyPrefab: {fileID: 7604839253617526526, guid: f580f7201b60b0d44ad795d49eef5bd6, type: 3}
+      count: 3
+      spawnDelay: 0
+    interEnemyDelay: 10
+  - startTime: 12
+    enemies:
+    - enemyPrefab: {fileID: 7604839253617526526, guid: 4a8efb108c8afcd40bb89988e240f655, type: 3}
+      count: 1
+      spawnDelay: 0
+    interEnemyDelay: 10
 --- !u!4 &1072132204
 Transform:
   m_ObjectHideFlags: 0
@@ -3614,16 +3641,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e007521af3a67bc42bbca5a2a32a286e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  meat: 0
+  meat: 100
   maxMeat: 1000
-  meatPerSecond: 1
+  meatPerSecond: 0.18
   gold: 0
   meatText: {fileID: 349650303}
   goldText: {fileID: 1133887945}
   baseMeatUpgradeCost: 10
   meatUpgradeCostMultiplier: 1.15
   meatUpgradeLevel: 0
-  meatUpgradeStep: 0.5
+  meatUpgradeStep: 0.02
   meatUpgradeCostText: {fileID: 706614983}
   meatUpgradeLevelText: {fileID: 1491491050}
   baseHpUpgradeCost: 10
