@@ -4045,6 +4045,7 @@ GameObject:
   - component: {fileID: 1079325314}
   - component: {fileID: 1079325313}
   - component: {fileID: 1079325312}
+  - component: {fileID: 1079325316}
   - component: {fileID: 1079325315}
   m_Layer: 5
   m_Name: MeatPerSecond - Button
@@ -4185,6 +4186,21 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
   m_EffectDistance: {x: 5, y: 5}
   m_UseGraphicAlpha: 1
+--- !u!114 &1079325316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1079325310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99f2ce8453d4d3b4daff31c97cb73697, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UpgradeButtonGuard
+  type: 0
+  button: {fileID: 1079325312}
+  costText: {fileID: 706614983}
 --- !u!1 &1083562060
 GameObject:
   m_ObjectHideFlags: 0
@@ -6001,6 +6017,7 @@ GameObject:
   - component: {fileID: 1654706172}
   - component: {fileID: 1654706171}
   - component: {fileID: 1654706170}
+  - component: {fileID: 1654706174}
   - component: {fileID: 1654706173}
   m_Layer: 5
   m_Name: UpgradeHpBase - Button
@@ -6141,6 +6158,21 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
   m_EffectDistance: {x: 5, y: 5}
   m_UseGraphicAlpha: 1
+--- !u!114 &1654706174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1654706168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99f2ce8453d4d3b4daff31c97cb73697, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UpgradeButtonGuard
+  type: 1
+  button: {fileID: 1654706170}
+  costText: {fileID: 1927750485}
 --- !u!1 &1722415361
 GameObject:
   m_ObjectHideFlags: 0
