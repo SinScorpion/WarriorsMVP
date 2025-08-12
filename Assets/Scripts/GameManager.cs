@@ -165,4 +165,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void UpdateGoldUI()
+    {
+        if (goldText != null)
+            goldText.text = gold.ToString();
+    }
+
 }
