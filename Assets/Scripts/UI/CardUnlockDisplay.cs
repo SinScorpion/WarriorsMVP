@@ -42,7 +42,7 @@ public class CardUnlockDisplay : MonoBehaviour
 
             unitImage.color = Color.white;
 
-            button.interactable = true;
+            return;
 
         }
         else
@@ -50,7 +50,7 @@ public class CardUnlockDisplay : MonoBehaviour
             meatPanel.SetActive(false);
             goldPanel.SetActive(true);
 
-            unitImage.color = new Color(0.5f, 0.5f, 0.5f, 1f);
+            unitImage.color = new Color(0.1f, 0.1f, 0.1f, 0.8f);
 
             goldCostText.text = unlockGoldCost.ToString();
 

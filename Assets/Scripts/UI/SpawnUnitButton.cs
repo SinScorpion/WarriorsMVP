@@ -11,11 +11,23 @@ public class SpawnUnitButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (button !=null && unitSpawner != null)
+        if (button ==null || unitSpawner == null || GameManager.Instance == null)
         {
-            float cost = unitSpawner.units[unitIndex].meatCost;
-            button.interactable = GameManager.Instance.meat >= cost;
+
+            if (button != null) button.interactable = false;
+            return;
         }
+        if (unitSpawner.units == null || unitIndex < 0 || unitIndex >= unitSpawner.units.Length)
+        {
+            button.interactable = false;
+            return;
+        }
+
+        var data = unitSpawner.units[unitIndex];
+
+        bool canInteract = data.unlocked && GameManager.Instance.meat >= data.meatCost;
+
+        button.interactable = canInteract;
     }
 
     public void OnClick()
