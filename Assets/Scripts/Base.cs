@@ -47,6 +47,16 @@ public class Base : MonoBehaviour
         {
             Destroy(hpBar.gameObject);
         }
+
+        GameStateController state = FindObjectOfType<GameStateController>();
+        if (state !=null)
+        {
+            if (isPlayerBase)
+                state.OnPlayerBaseDestroyed();
+            else
+                state.OnEnemyBaseDestroyed();
+        }
+
         if (!isPlayerBase && GameManager.Instance !=null)
         {
             GameManager.Instance.AddGold(rewardGold);
