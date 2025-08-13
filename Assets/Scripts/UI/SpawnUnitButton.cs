@@ -27,6 +27,13 @@ public class SpawnUnitButton : MonoBehaviour
 
         bool canInteract = data.unlocked && GameManager.Instance.meat >= data.meatCost;
 
+        //Блокировка кнопки героя
+        if (unitIndex == unitSpawner.HeroUnitIndex && unitSpawner.IsHeroAlive)
+        {
+            button.interactable = false;
+            return;
+        }
+
         button.interactable = canInteract;
     }
 
