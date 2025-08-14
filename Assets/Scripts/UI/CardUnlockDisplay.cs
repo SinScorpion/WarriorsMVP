@@ -20,7 +20,35 @@ public class CardUnlockDisplay : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        // Подстраховка от раннего старта
+        if (unitSpawner == null || unitSpawner.units == null) return;
+        if (unitIndex < 0 || unitIndex >= unitSpawner.units.Length) return;
+
         UpdateDisplay();
+
+        RewireOnClickByState();
+    }
+
+    void RewireOnClickByState()
+    {
+        if (button == null || unitSpawner == null) return;
+
+        var data = unitSpawner.units[unitIndex];
+        button.onClick.RemoveAllListeners();
+
+        if (data.unlocked)
+        {
+            // Если на карточке есть SpawnUnitButton — используем его OnClick
+            var spawnBtn = GetComponent<SpawnUnitButton>();
+            if (spawnBtn != null)
+                button.onClick.AddListener(spawnBtn.OnClick);
+            else
+                button.onClick.AddListener(() => unitSpawner.SpawnUnit(unitIndex));
+        }
+        else
+        {
+            button.onClick.AddListener(OnUnlockButtonClick);
+        }
     }
 
     // Update is called once per frame
@@ -84,6 +112,9 @@ public class CardUnlockDisplay : MonoBehaviour
             GameManager.Instance.UpdateGoldUI();
 
             data.unlocked = true;
+
+            if (GameManager.Instance != null)
+                SaveSystem.SaveToPrefs(GameManager.Instance);
 
             UpdateDisplay();
 

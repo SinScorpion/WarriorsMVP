@@ -38,8 +38,12 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+
+        SaveSystem.LoadFromPrefs(this);
+
         UpdateMeatUpgradeUI();
         UpdateBaseHpUpgradeUI();
+        UpdateGoldUI();
     }
 
 
@@ -77,10 +81,9 @@ public class GameManager : MonoBehaviour
     public void AddGold(int amount)
     {
         gold += amount;
-        if (goldText != null)
-        {
-            goldText.text = gold.ToString();
-        }
+       
+        UpdateGoldUI();
+        SaveSystem.SaveToPrefs(this);
     }
 
     // Метод вычисления цены улучшения мяса
@@ -105,10 +108,9 @@ public class GameManager : MonoBehaviour
 
             meatPerSecond += meatUpgradeStep;
             UpdateMeatUpgradeUI();
-            if (goldText !=null)
-            {
-                goldText.text = gold.ToString();
-            }
+            UpdateGoldUI();
+           
+            SaveSystem.SaveToPrefs(this);
         }
     }
 
@@ -133,11 +135,9 @@ public class GameManager : MonoBehaviour
            
             
             UpdateBaseHpUpgradeUI();
-
-            if (goldText != null)
-            {
-                goldText.text = gold.ToString();
-            }
+            UpdateGoldUI();
+           
+            SaveSystem.SaveToPrefs(this);
         }
     }
 
@@ -170,5 +170,17 @@ public class GameManager : MonoBehaviour
         if (goldText != null)
             goldText.text = gold.ToString();
     }
+
+    private void OnApplicationPause(bool pause)
+    {
+        if (pause)
+            SaveSystem.SaveToPrefs(this);
+    }
+
+    private void OnApplicationQuit()
+    {
+        SaveSystem.SaveToPrefs(this);
+    }
+
 
 }
