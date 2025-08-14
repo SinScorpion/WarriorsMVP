@@ -342,6 +342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90a5e04d42f46034b9f8d056d310b1f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShooterUnit
+  defendAtBase: 1
   isPlayerUnit: 1
   moveSpeed: 0.2
   maxHP: 2

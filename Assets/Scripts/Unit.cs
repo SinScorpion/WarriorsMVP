@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
+    [SerializeField] private bool defendAtBase = false;
+
     public bool isPlayerUnit = false;
     public float moveSpeed = 1f;
     public float maxHP = 10f;
@@ -83,8 +85,37 @@ public class Unit : MonoBehaviour
     {
         attackTimer -= Time.deltaTime; // Уменьшаем таймер каждый кадр
 
-        Unit target = FindTargetInRange(); // Ищем врага в радиусе
+        // 1) Если база в радиусе — бьём базу и никуда не уходим
+        Base baseInRange = FindBaseInRange();
+        if (baseInRange != null)
+        {
+            // Если включена самооборона и рядом есть враг — бьём врага
+            if (defendAtBase)
+            {
+                Unit enemyClose = FindTargetInRange();
+                if (enemyClose != null)
+                {
+                    if (attackTimer <= 0f)
+                    {
+                        Attack(enemyClose);
+                        attackTimer = attackCooldown;
+                    }
+                    return; // стоим и бьём врага у базы
+                }
+            }
 
+            // Иначе — бьём базу (как сейчас)
+            if (attackTimer <= 0f)
+            {
+                AttackBase(baseInRange);
+                attackTimer = attackCooldown;
+            }
+            return; // важный ранний выход
+        }
+
+
+        // 2) Иначе, если враг-юнит в радиусе — бьём юнита (твоё прежнее поведение)
+        Unit target = FindTargetInRange();
         if (target != null)
         {
             if (attackTimer <= 0f)
@@ -92,66 +123,51 @@ public class Unit : MonoBehaviour
                 Attack(target);
                 attackTimer = attackCooldown; // Сброс перезарядки
             }
-            // Если есть враг - НЕ двигаемся!
+            return; // стоим на месте во время атаки
         }
-        else
+
+        // 3) Никого рядом — двигаемся как раньше
+        Unit closestEnemy = FindClosestEnemy();
+        if (closestEnemy != null)
         {
-            // Движение к ближайшему врагу
-            Unit closestEnemy = FindClosestEnemy();
-            if (closestEnemy !=null)
+            Vector2 targetPos = closestEnemy.transform.position;
+            if (IsAllyInFront())
             {
-                Vector2 targetPos = closestEnemy.transform.position;
-                if (IsAllyInFront())
-                {
-                    float offset = (Random.value > 0.5f) ? avoidYOffset : -avoidYOffset;
-                    Vector2 avoidDirection = new Vector2(moveDirection.x, offset);
-                    transform.Translate(avoidDirection * moveSpeed * Time.deltaTime);
-                }
-                else
-                {
-                    Vector2 direction = ((Vector2)targetPos - (Vector2)transform.position).normalized;
-                    transform.Translate(direction * moveSpeed * Time.deltaTime);
-                }
-                
+                float offset = (Random.value > 0.5f) ? avoidYOffset : -avoidYOffset;
+                Vector2 avoidDirection = new Vector2(moveDirection.x, offset);
+                transform.Translate(avoidDirection * moveSpeed * Time.deltaTime);
             }
             else
             {
-                Base targetBase = FindBaseInRange();
-                if (targetBase !=null)
+                Vector2 direction = ((Vector2)targetPos - (Vector2)transform.position).normalized;
+                transform.Translate(direction * moveSpeed * Time.deltaTime);
+            }
+        }
+        else
+        {
+            // как у тебя было: движемся к вражеской базе или по moveDirection
+            Base[] allBases = FindObjectsOfType<Base>();
+            Base enemyBase = null;
+            foreach (var b in allBases)
+            {
+                if (b.isPlayerBase != this.isPlayerUnit)
                 {
-                    if (attackTimer <= 0f)
-                    {
-                        AttackBase(targetBase);
-                        attackTimer = attackCooldown;
-                    }
-
-                }
-                else
-                {
-                    Base[] allBases = FindObjectsOfType<Base>();
-                    Base enemyBase = null;
-                    foreach (var b in allBases)
-                    {
-                        if (b.isPlayerBase != this.isPlayerUnit)
-                        {
-                            enemyBase = b;
-                            break;
-                        }
-                    }
-                    if (enemyBase !=null)
-                    {
-                        Vector2 direction = ((Vector2)enemyBase.transform.position - (Vector2)transform.position).normalized;
-                        transform.Translate(direction * moveSpeed * Time.deltaTime);
-                    }
-                    else
-                    {
-                        transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
-                    }
+                    enemyBase = b;
+                    break;
                 }
             }
-            
+            if (enemyBase != null)
+            {
+                Vector2 direction = ((Vector2)enemyBase.transform.position - (Vector2)transform.position).normalized;
+                transform.Translate(direction * moveSpeed * Time.deltaTime);
+            }
+            else
+            {
+                transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
+            }
         }
     }
+
 
     protected virtual void Attack(Unit target)
     {
@@ -218,22 +234,31 @@ public class Unit : MonoBehaviour
 
     public void DealDamage()
     {
-      
-
-        Unit target = FindTargetInRange();
-        if (target !=null)
+        // Сначала база (если рядом), но с учётом самообороны
+        Base baseTarget = FindBaseInRange();
+        if (baseTarget != null)
         {
-            target.TakeDamage(damage);
-        }
-        else
-        {
-            Base baseTarget = FindBaseInRange();
-            if (baseTarget != null)
+            if (defendAtBase)
             {
-                baseTarget.TakeDamage(damage);
+                Unit enemyClose = FindTargetInRange();
+                if (enemyClose != null)
+                {
+                    enemyClose.TakeDamage(damage);
+                    return;
+                }
             }
+
+            baseTarget.TakeDamage(damage);
+            return;
         }
+
+        // Как и раньше: вне базы — бьём ближайшего врага-юнита в радиусе
+        Unit target = FindTargetInRange();
+        if (target != null)
+            target.TakeDamage(damage);
     }
+
+
     void Die()
     {
         if (hpBarInstance !=null)
