@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class Base : MonoBehaviour
 {
+    [SerializeField] private AudioClip playerBaseDestroyedSfx; // звук, когда ломают твою базу
+    [SerializeField] private AudioClip enemyBaseDestroyedSfx;  // звук, когда ты ломаешь врага
+    [SerializeField] private float destroyedSfxVolume = 0.85f; // громкость
+
     public float maxHP = 100f;
     public float currentHP = 100f;
     public int rewardGold = 0; // Золото за уничтожение базы
@@ -44,24 +48,44 @@ public class Base : MonoBehaviour
     void Die()
     {
         if (hpBar != null)
-        {
             Destroy(hpBar.gameObject);
-        }
 
+        // ПРОИГРЫВАЕМ ЗВУК
+        PlayDestroyedSfx();
+
+        // Показываем Win/Lose и стопаем бой
         GameStateController state = FindObjectOfType<GameStateController>();
-        if (state !=null)
+        if (state != null)
         {
-            if (isPlayerBase)
-                state.OnPlayerBaseDestroyed();
-            else
-                state.OnEnemyBaseDestroyed();
+            if (isPlayerBase) state.OnPlayerBaseDestroyed();
+            else state.OnEnemyBaseDestroyed();
         }
 
-        if (!isPlayerBase && GameManager.Instance !=null)
-        {
+        // Награда за уничтожение вражеской базы
+        if (!isPlayerBase && GameManager.Instance != null)
             GameManager.Instance.AddGold(rewardGold);
-        }
+
         Destroy(gameObject);
+    }
+
+
+    private void PlayDestroyedSfx()
+    {
+        AudioClip clip = isPlayerBase ? playerBaseDestroyedSfx : enemyBaseDestroyedSfx;
+        if (clip == null) return;
+
+        // временный источник, чтобы не оборвался при Destroy(this)
+        GameObject temp = new GameObject("BaseDestroyedSFX");
+        temp.transform.position = transform.position;
+
+        var src = temp.AddComponent<AudioSource>();
+        src.clip = clip;
+        src.volume = destroyedSfxVolume;
+        src.spatialBlend = 0f;               // 2D-звук для мобильных
+        src.pitch = Random.Range(0.98f, 1.02f); // лёгкая вариативность
+        src.Play();
+
+        Destroy(temp, clip.length);
     }
 
     // Update is called once per frame

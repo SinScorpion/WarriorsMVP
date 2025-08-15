@@ -356,8 +356,8 @@ MonoBehaviour:
   hitFlashDuration: 0.08
   isPlayerUnit: 1
   moveSpeed: 0.2
-  maxHP: 18
-  currentHP: 18
+  maxHP: 20
+  currentHP: 20
   allyCheckDistance: 0.3
   avoidYOffset: 0.3
   rewardGold: 0

@@ -360,7 +360,7 @@ MonoBehaviour:
   currentHP: 18
   allyCheckDistance: 0.3
   avoidYOffset: 0.3
-  rewardGold: 14
+  rewardGold: 16
   moveDirection: {x: -1, y: 0}
   damage: 4
   attackRange: 0.32

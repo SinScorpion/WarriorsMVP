@@ -4303,10 +4303,46 @@ MonoBehaviour:
     interEnemyDelay: 10
   - startTime: 12
     enemies:
+    - enemyPrefab: {fileID: 7604839253617526526, guid: a156d069caa6b244c9311213b4bf43fa, type: 3}
+      count: 2
+      spawnDelay: 0
+    - enemyPrefab: {fileID: 7604839253617526526, guid: 29d58d356b875da40a3babe686794d76, type: 3}
+      count: 2
+      spawnDelay: 0
+    interEnemyDelay: 2
+  - startTime: 12
+    enemies:
+    - enemyPrefab: {fileID: 7604839253617526526, guid: a156d069caa6b244c9311213b4bf43fa, type: 3}
+      count: 10
+      spawnDelay: 0
+    interEnemyDelay: 2
+  - startTime: 12
+    enemies:
+    - enemyPrefab: {fileID: 7604839253617526526, guid: 29d58d356b875da40a3babe686794d76, type: 3}
+      count: 5
+      spawnDelay: 0
+    interEnemyDelay: 2
+  - startTime: 12
+    enemies:
+    - enemyPrefab: {fileID: 7604839253617526526, guid: f580f7201b60b0d44ad795d49eef5bd6, type: 3}
+      count: 7
+      spawnDelay: 0
+    interEnemyDelay: 2
+  - startTime: 12
+    enemies:
+    - enemyPrefab: {fileID: 7604839253617526526, guid: 29d58d356b875da40a3babe686794d76, type: 3}
+      count: 8
+      spawnDelay: 0
+    interEnemyDelay: 2
+  - startTime: 12
+    enemies:
     - enemyPrefab: {fileID: 7604839253617526526, guid: 4a8efb108c8afcd40bb89988e240f655, type: 3}
       count: 1
       spawnDelay: 0
-    interEnemyDelay: 10
+    - enemyPrefab: {fileID: 7604839253617526526, guid: 29d58d356b875da40a3babe686794d76, type: 3}
+      count: 4
+      spawnDelay: 0
+    interEnemyDelay: 1
 --- !u!4 &1072132204
 Transform:
   m_ObjectHideFlags: 0
@@ -4609,10 +4645,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e007521af3a67bc42bbca5a2a32a286e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  meat: 100
+  meat: 0
   maxMeat: 1000
   meatPerSecond: 0.18
-  gold: 2000
+  gold: 0
   meatText: {fileID: 349650303}
   goldText: {fileID: 1133887945}
   baseMeatUpgradeCost: 10
@@ -5411,7 +5447,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -32.82}
+  m_AnchoredPosition: {x: 0, y: -32.820007}
   m_SizeDelta: {x: 0, y: 374.36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1157820442
@@ -6809,7 +6845,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -83.43001}
+  m_AnchoredPosition: {x: 0, y: -83.43005}
   m_SizeDelta: {x: 0, y: 272.13998}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1626526523
@@ -8160,6 +8196,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3440ffeefbfa624590a503380f063b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Base
+  playerBaseDestroyedSfx: {fileID: 8300000, guid: 597327d00a0b40f4ebb7f579728e10c6, type: 3}
+  enemyBaseDestroyedSfx: {fileID: 8300000, guid: 597327d00a0b40f4ebb7f579728e10c6, type: 3}
+  destroyedSfxVolume: 0.85
   maxHP: 2
   currentHP: 2
   rewardGold: 0
@@ -8343,6 +8382,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3440ffeefbfa624590a503380f063b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Base
+  playerBaseDestroyedSfx: {fileID: 8300000, guid: 597327d00a0b40f4ebb7f579728e10c6, type: 3}
+  enemyBaseDestroyedSfx: {fileID: 8300000, guid: 597327d00a0b40f4ebb7f579728e10c6, type: 3}
+  destroyedSfxVolume: 0.85
   maxHP: 100
   currentHP: 100
   rewardGold: 1000
