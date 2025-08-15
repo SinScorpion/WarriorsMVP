@@ -301,6 +301,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Unit
   defendAtBase: 1
+  hitFlashColor: {r: 1, g: 0.29803923, b: 0.5254902, a: 1}
+  hitFlashDuration: 0.08
   isPlayerUnit: 0
   moveSpeed: 0.2
   maxHP: 6

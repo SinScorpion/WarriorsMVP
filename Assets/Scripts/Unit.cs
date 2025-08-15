@@ -3,6 +3,14 @@ using UnityEngine;
 public class Unit : MonoBehaviour
 {
     [SerializeField] private bool defendAtBase = false;
+    // --- Hit flash ---
+    [SerializeField] private Color hitFlashColor = Color.red; // цвет вспышки
+    [SerializeField] private float hitFlashDuration = 0.08f;    // длительность вспышки, сек
+
+    private SpriteRenderer[] hitRenderers;  // все спрайты юнита (на случай дочерних)
+    private Color[] originalColors;         // их исходные цвета
+    private Coroutine flashRoutine;         // чтобы не «накладывались» вспышки
+
 
     public bool isPlayerUnit = false;
     public float moveSpeed = 1f;
@@ -53,6 +61,15 @@ public class Unit : MonoBehaviour
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        hitRenderers = GetComponentsInChildren<SpriteRenderer>();
+        if (hitRenderers == null || hitRenderers.Length == 0 && spriteRenderer != null)
+            hitRenderers = new SpriteRenderer[] { spriteRenderer };
+
+        originalColors = new Color[hitRenderers.Length];
+        for (int i = 0; i < hitRenderers.Length; i++)
+            originalColors[i] = hitRenderers[i].color;
+
 
         gameObject.tag = isPlayerUnit ? "PlayerUnit" : "EnemyUnit";
 
@@ -193,6 +210,8 @@ public class Unit : MonoBehaviour
     public void TakeDamage(float amount)
     {
         currentHP -= amount;
+        TriggerHitFlash();
+
         if (hpBarInstance !=null)
         {
             if (!hpBarInstance.gameObject.activeSelf)
@@ -339,6 +358,27 @@ public class Unit : MonoBehaviour
             }
         }
         return null;
+    }
+
+    private void TriggerHitFlash()
+    {
+        if (flashRoutine != null) StopCoroutine(flashRoutine);
+        flashRoutine = StartCoroutine(HitFlashCo());
+    }
+
+    private System.Collections.IEnumerator HitFlashCo()
+    {
+        // красим в «вспышку»
+        for (int i = 0; i < hitRenderers.Length; i++)
+            if (hitRenderers[i] != null) hitRenderers[i].color = hitFlashColor;
+
+        yield return new WaitForSeconds(hitFlashDuration);
+
+        // возвращаем цвета
+        for (int i = 0; i < hitRenderers.Length; i++)
+            if (hitRenderers[i] != null) hitRenderers[i].color = originalColors[i];
+
+        flashRoutine = null;
     }
 
 }
