@@ -8198,7 +8198,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Base
   playerBaseDestroyedSfx: {fileID: 8300000, guid: 597327d00a0b40f4ebb7f579728e10c6, type: 3}
   enemyBaseDestroyedSfx: {fileID: 8300000, guid: 597327d00a0b40f4ebb7f579728e10c6, type: 3}
-  destroyedSfxVolume: 0.85
+  destroyedSfxVolume: 0.7
   maxHP: 2
   currentHP: 2
   rewardGold: 0
@@ -8384,10 +8384,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Base
   playerBaseDestroyedSfx: {fileID: 8300000, guid: 597327d00a0b40f4ebb7f579728e10c6, type: 3}
   enemyBaseDestroyedSfx: {fileID: 8300000, guid: 597327d00a0b40f4ebb7f579728e10c6, type: 3}
-  destroyedSfxVolume: 0.85
-  maxHP: 100
-  currentHP: 100
-  rewardGold: 1000
+  destroyedSfxVolume: 0.7
+  maxHP: 500
+  currentHP: 500
+  rewardGold: 1500
   isPlayerBase: 0
   hpBar: {fileID: 0}
   hpBarPrefab: {fileID: 7769281066555706627, guid: bef7930a578c41448a7b5bea03711d1f, type: 3}

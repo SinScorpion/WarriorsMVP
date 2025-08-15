@@ -1,14 +1,20 @@
-using UnityEngine;
+п»їusing UnityEngine;
 
 public class Base : MonoBehaviour
 {
-    [SerializeField] private AudioClip playerBaseDestroyedSfx; // звук, когда ломают твою базу
-    [SerializeField] private AudioClip enemyBaseDestroyedSfx;  // звук, когда ты ломаешь врага
-    [SerializeField] private float destroyedSfxVolume = 0.85f; // громкость
+    [SerializeField] private AudioClip playerBaseDestroyedSfx; // Р·РІСѓРє, РєРѕРіРґР° Р»РѕРјР°СЋС‚ С‚РІРѕСЋ Р±Р°Р·Сѓ
+    [SerializeField] private AudioClip enemyBaseDestroyedSfx;  // Р·РІСѓРє, РєРѕРіРґР° С‚С‹ Р»РѕРјР°РµС€СЊ РІСЂР°РіР°
+    [SerializeField] private float destroyedSfxVolume = 0.85f; // РіСЂРѕРјРєРѕСЃС‚СЊ
 
     public float maxHP = 100f;
     public float currentHP = 100f;
-    public int rewardGold = 0; // Золото за уничтожение базы
+
+    // --- Р Р°Р·РґР°С‡Р° Р·РѕР»РѕС‚Р° РїРѕ СѓСЂРѕРЅСѓ ---
+    [Tooltip("РЎРєРѕР»СЊРєРѕ РјРѕРЅРµС‚ РІ СЃСѓРјРјРµ РґР°С‘С‚ Р±Р°Р·Р° РїСЂРё РїРѕР»РЅРѕРј СѓРЅРёС‡С‚РѕР¶РµРЅРёРё.")]
+    public int rewardGold = 0; // Р—РѕР»РѕС‚Рѕ Р·Р° СѓРЅРёС‡С‚РѕР¶РµРЅРёРµ Р±Р°Р·С‹
+    private int goldAwardedSoFar = 0;     // СЃРєРѕР»СЊРєРѕ РјРѕРЅРµС‚ СѓР¶Рµ РІС‹РґР°РЅРѕ Р·Р° СѓСЂРѕРЅ
+    private float goldPerHp = 0f;         // РјРѕРЅРµС‚ Р·Р° 1 HP СѓСЂРѕРЅР°
+
     public bool isPlayerBase = false;
     [HideInInspector] public HPBar hpBar;
     public GameObject hpBarPrefab;
@@ -28,16 +34,34 @@ public class Base : MonoBehaviour
         hpBar = bar;
 
         currentHP = maxHP;
+
+        goldPerHp = (maxHP > 0f) ? (rewardGold / maxHP) : 0f;
+        goldAwardedSoFar = 0;
+
     }
 
     public void TakeDamage(float amount)
     {
+        float prevHP = currentHP;
+
         currentHP -= amount;
-        if (currentHP<0)
+        if (currentHP < 0f) currentHP = 0f;
+
+        if (hpBar != null) hpBar.SetHP(currentHP, maxHP);
+
+        //  РќРћР’РћР•: РІС‹РґР°С‘Рј РјРѕРЅРµС‚С‹ Р·Р° РЅР°РЅРµСЃС‘РЅРЅС‹Р№ СѓСЂРѕРЅ (С‚РѕР»СЊРєРѕ РµСЃР»Рё Р±СЊС‘Рј Р’Р РђР–Р•РЎРљРЈР® Р±Р°Р·Сѓ)
+        if (!isPlayerBase && GameManager.Instance != null && rewardGold > 0)
         {
-            currentHP = 0;
+            // РЎРєРѕР»СЊРєРѕ РјРѕРЅРµС‚ Р”РћР›Р–РќРћ Р±С‹С‚СЊ РІС‹РґР°РЅРѕ СЃ СѓС‡С‘С‚РѕРј СЃСѓРјРјР°СЂРЅРѕРіРѕ СЃРЅРµСЃС‘РЅРЅРѕРіРѕ HP
+            int expectedCoins = Mathf.FloorToInt((maxHP - currentHP) * goldPerHp);
+            int toGive = expectedCoins - goldAwardedSoFar;
+            if (toGive > 0)
+            {
+                GameManager.Instance.AddGold(toGive);
+                goldAwardedSoFar += toGive;
+            }
         }
-        hpBar.SetHP(currentHP, maxHP);
+        // 
 
         if (currentHP <= 0f)
         {
@@ -45,15 +69,16 @@ public class Base : MonoBehaviour
         }
     }
 
+
     void Die()
     {
         if (hpBar != null)
             Destroy(hpBar.gameObject);
 
-        // ПРОИГРЫВАЕМ ЗВУК
+        // РџР РћРР“Р Р«Р’РђР•Рњ Р—Р’РЈРљ
         PlayDestroyedSfx();
 
-        // Показываем Win/Lose и стопаем бой
+        // РџРѕРєР°Р·С‹РІР°РµРј Win/Lose Рё СЃС‚РѕРїР°РµРј Р±РѕР№
         GameStateController state = FindObjectOfType<GameStateController>();
         if (state != null)
         {
@@ -61,9 +86,7 @@ public class Base : MonoBehaviour
             else state.OnEnemyBaseDestroyed();
         }
 
-        // Награда за уничтожение вражеской базы
-        if (!isPlayerBase && GameManager.Instance != null)
-            GameManager.Instance.AddGold(rewardGold);
+      
 
         Destroy(gameObject);
     }
@@ -74,15 +97,15 @@ public class Base : MonoBehaviour
         AudioClip clip = isPlayerBase ? playerBaseDestroyedSfx : enemyBaseDestroyedSfx;
         if (clip == null) return;
 
-        // временный источник, чтобы не оборвался при Destroy(this)
+        // РІСЂРµРјРµРЅРЅС‹Р№ РёСЃС‚РѕС‡РЅРёРє, С‡С‚РѕР±С‹ РЅРµ РѕР±РѕСЂРІР°Р»СЃСЏ РїСЂРё Destroy(this)
         GameObject temp = new GameObject("BaseDestroyedSFX");
         temp.transform.position = transform.position;
 
         var src = temp.AddComponent<AudioSource>();
         src.clip = clip;
         src.volume = destroyedSfxVolume;
-        src.spatialBlend = 0f;               // 2D-звук для мобильных
-        src.pitch = Random.Range(0.98f, 1.02f); // лёгкая вариативность
+        src.spatialBlend = 0f;               // 2D-Р·РІСѓРє РґР»СЏ РјРѕР±РёР»СЊРЅС‹С…
+        src.pitch = Random.Range(0.98f, 1.02f); // Р»С‘РіРєР°СЏ РІР°СЂРёР°С‚РёРІРЅРѕСЃС‚СЊ
         src.Play();
 
         Destroy(temp, clip.length);
